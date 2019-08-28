@@ -1,8 +1,8 @@
 from flask import request, Response
+from ..model.nasa_model import Nasa
 from .. import session
 from ..util.nasa_dto import NasaDto
 from flask_restplus import Resource
-
 
 api = NasaDto.api
 nasa = NasaDto.nasa
@@ -11,4 +11,26 @@ nasa = NasaDto.nasa
 class AllImages(Resource):
     @api.marshal_list_with(nasa)
     def get(self):
-        return 205
+        images = session.query(Nasa).all()
+        return images, 200
+
+@api.route('/add')
+class AddUser(Resource):
+    @api.marshal_with(nasa)
+    def post(self):
+        dict_body = request.get_json()
+
+        image_to_add = Nasa(copyright=dict_body['copyright'],
+                            date=dict_body['date'],
+                            explanation=dict_body['explanation'],
+                            hdurl=dict_body['hdurl'],
+                            media_type=dict_body['media_type'],
+                            service_version=dict_body['service_version'],
+                            title=dict_body['title'],
+                            url=dict_body['url'])
+        
+        session.add(image_to_add)
+        session.commit()
+        session.close()
+
+        return ({'message': 'Image added'}), 205
