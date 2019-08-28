@@ -1,4 +1,3 @@
-    
 from .. import Base
 from sqlalchemy import String, Integer, DateTime, Column, Text
 
@@ -6,14 +5,14 @@ from sqlalchemy import String, Integer, DateTime, Column, Text
 class Nasa(Base):
     __tablename__ = 'imageoftheday'
 
-    id = Column('id', Integer, primary_key=True, autoincrement=True),
-    date = Column(DateTime),
-    explanation = Column(Text),
-    hdurl = Column(String(200)),
-    media_type = Column(String(50)),
-    service_version = Column(String(10)),
-    title = Column(String(60)),
-    url = Column(String(200)),
+    id = Column('id', Integer, autoincrement=True, primary_key=True)
+    date = Column(DateTime)
+    explanation = Column(Text)
+    hdurl = Column(String(200))
+    media_type = Column(String(50))
+    service_version = Column(String(10))
+    title = Column(String(60))
+    url = Column(String(200))
     copyright = Column(String(150))
 
     def __init__(self, date, explanation, hdurl, media_type, service_version, title, url, copyright):
