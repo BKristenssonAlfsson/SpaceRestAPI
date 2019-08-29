@@ -13,7 +13,7 @@ class Nasa(Base):
     service_version = Column(String(10))
     title = Column(String(60))
     url = Column(String(200))
-    copyright = Column(String(150))
+    copyright = Column(String(150), default="", nullable=True)
 
     def __init__(self, date, explanation, hdurl, media_type, service_version, title, url, copyright):
         self.date = date

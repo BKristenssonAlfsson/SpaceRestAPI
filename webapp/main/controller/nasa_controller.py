@@ -23,14 +23,14 @@ class AddUser(Resource):
         response_message = ""
         status_code = 503
         
-        image_to_add = Nasa(copyright=dict_body['copyright'],
-                            date=dict_body['date'],
-                            explanation=dict_body['explanation'],
-                            hdurl=dict_body['hdurl'],
-                            media_type=dict_body['media_type'],
-                            service_version=dict_body['service_version'],
-                            title=dict_body['title'],
-                            url=dict_body['url'])
+        image_to_add = Nasa(copyright=dict_body.get('copyright', ''),
+                            date=dict_body.get('date', ''),
+                            explanation=dict_body.get('explanation', ''),
+                            hdurl=dict_body.get('hdurl', ''),
+                            media_type=dict_body.get('media_type', ''),
+                            service_version=dict_body.get('service_version', ''),
+                            title=dict_body.get('title', ''),
+                            url=dict_body.get('url', ''))
 
         check = mysql_queries.check_title(dict_body['title'])
 
