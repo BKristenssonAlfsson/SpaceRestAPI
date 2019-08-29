@@ -6,7 +6,7 @@ from flask_cors import CORS
 from .main.controller.nasa_controller import api as nasa
 
 blueprint = Blueprint('api', __name__, url_prefix='/api')
-CORS(blueprint)
+CORS(blueprint, support_credentials=True)
 
 api = Api(blueprint,
           title="Space Data Service",
