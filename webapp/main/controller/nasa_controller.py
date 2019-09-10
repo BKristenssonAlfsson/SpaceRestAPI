@@ -16,7 +16,7 @@ class AllImages(Resource):
         return images, 200
 
 @api.route('/add')
-class AddUser(Resource):
+class AddImage(Resource):
     @api.marshal_with(nasa)
     def post(self):
         dict_body = request.get_json()

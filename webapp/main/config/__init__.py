@@ -1,4 +1,5 @@
 from .mysql import cnx
+from .mongo import MongoDatabase
 
 class Config(object):
     """
@@ -10,6 +11,7 @@ class DevelopmentConfig(Config):
     SQLALCHEMY_ECHO = True
     SQLALCHEMY_DATABASE_URI = cnx
     SQLALCHEMY_TRACK_MODIFICATIONS = True
+    MONGO_URI = MongoDatabase
 
 
 class ProductionConfig(Config):
