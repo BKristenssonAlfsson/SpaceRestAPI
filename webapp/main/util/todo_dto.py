@@ -6,6 +6,7 @@ class TodoDto:
 
     todo = api.model('todo', {
         'id': fields.String(description="ID"),
-        'todo': fields.String(description="What to do", required=True),
+        'label': fields.String(description="What to do title", required=True),
+        'description': fields.String(description="What is it all about", required=True),
         'done': fields.Boolean(description="Done or not")
     })

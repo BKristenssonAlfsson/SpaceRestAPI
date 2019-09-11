@@ -17,7 +17,7 @@ class AllTodos(Resource):
 
         for todo in undone:
             todos.append(todo)
-        
+
         return todos, 200
 
 @api.route('/add')
@@ -26,10 +26,12 @@ class AddTodo(Resource):
     def post(self):
 
         dict_body = request.get_json()
+        print(dict_body)
         new_todo = Todo()
 
-        todo_to_add = Todo(todo=dict_body.get('todo', ''),
-                           done=dict_body.get('done', ''))
+        todo_to_add = Todo(label=dict_body.get('label', ''),
+                           description=dict_body.get('description', ''),
+                           done=False)
                     
 
         new_todo = todo_to_add
