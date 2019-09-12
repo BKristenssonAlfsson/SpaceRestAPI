@@ -12,3 +12,4 @@ Space Rest API will be transferred to a SpringBoot project
 <li> Python 3.7 </li>
 <li> Flask </li>
 <li> MongoDB </li>
+<li> Celery </li>
