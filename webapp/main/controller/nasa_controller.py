@@ -5,8 +5,11 @@ from ..util.nasa_dto import NasaDto
 from flask_restplus import Resource
 from ..queries import mysql_queries
 
+
 api = NasaDto.api
 nasa = NasaDto.nasa
+
+
 
 @api.route('/')
 class AllImages(Resource):
@@ -19,6 +22,7 @@ class AllImages(Resource):
 class AddImage(Resource):
     @api.marshal_with(nasa)
     def post(self):
+
         dict_body = request.get_json()
         response_message = ""
         status_code = 503

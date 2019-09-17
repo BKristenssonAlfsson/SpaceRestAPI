@@ -3,14 +3,18 @@ from flask_restplus import Resource
 from flask import request, Response
 from ..util.todo_dto import TodoDto
 from ..queries import mongo_queries
+from ..requests.to_rabbit import NasaRequests
 
 api = TodoDto.api
 todo = TodoDto.todo
+
+check = NasaRequests.start
 
 @api.route('/')
 class AllTodos(Resource):
     @api.marshal_list_with(todo)
     def get(self):
+        check()
         todos = []
 
         undone = mongo_queries.filter_for_undone_todos()
