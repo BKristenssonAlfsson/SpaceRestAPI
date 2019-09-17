@@ -3,6 +3,7 @@ from flask_migrate import Migrate, MigrateCommand
 from webapp.main.config import app_config
 from webapp.main import create_app
 from webapp import blueprint
+from webapp.main.requests.to_rabbit import NasaRequests
 
 app = create_app()
 
@@ -10,8 +11,6 @@ app.register_blueprint(blueprint)
 
 manager = Manager(app)
 migrate = Migrate(app)
-
-
 
 @manager.command
 def run():

@@ -8,7 +8,7 @@ from ..requests.to_rabbit import NasaRequests
 api = TodoDto.api
 todo = TodoDto.todo
 
-check = NasaRequests.start
+check = NasaRequests.nasa
 
 @api.route('/')
 class AllTodos(Resource):

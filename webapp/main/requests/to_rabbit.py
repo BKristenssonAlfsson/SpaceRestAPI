@@ -1,8 +1,8 @@
 import requests
 from celery import Celery
-from ..config.celeryconfig import CELERY_RESULT_BACKEND
+from ..config.celeryconfig import CELERY_RESULT_BACKEND, CELERY_ROUTES, CELERY_BROKER
 
-app = Celery("nasa", broker="pyamqp://guest@localhost//", backend=CELERY_RESULT_BACKEND)
+app = Celery("nasa", broker=CELERY_BROKER, backend=CELERY_RESULT_BACKEND)
 
 
 class NasaRequests:
@@ -12,6 +12,6 @@ class NasaRequests:
     def __init__(self):
         self.req.auth = ()
     
-    @app.task(queue='nasa')
-    def start():
-        app.send_task("NASA", kwargs=dict(value="Foo"))
+    @app.task()
+    def nasa():
+        app.send_task(name="NASA", queue='nasa', kwargs=dict(value="iotd"))
